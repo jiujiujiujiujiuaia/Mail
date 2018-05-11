@@ -1,0 +1,17 @@
+20180505
+无论是@autowire还是@Componet这种注解 都是相当于自动扫描 然后给类一个初始值 如果没有的话 就会使nullpointerexception
+20180506
+有点奇怪（好奇怪呀>_<）的地方在于 如果Href导入的是一个html 它的localhost导入的是直接地址 但是如果href里面是login 没有Html 那就是直接在本地控制器里面再加控制器
+eg. localhost:8080 + Login 转入到html  就是localhost:8080/XXX.html
+localhost:8080 + Login 转入到logout(某个控制器)那就是 localhost:8080/Login/logout 不知道什么原因有有待排查
+
+第一个是href跳转的 第二个是action 控制的
+20180508
+1昨天实现鬼cookie 删除的时候死都删除不掉 没有一个人的博客说到要凭path和key一起确认是不是一个cookie
+
+但是还是留下了一个问题 为什么刚设置完cookie的maxage 然后再去index 控制台输出的是该cookie的maxage为 -1 还是一个临时的
+
+2得深入的弄清楚发生了什么 spring已经帮我注入了situation这个类 但是如果我自己再加一个构造函数就会报错
+
+20180511
+啊 创建CONSTRAINT foreign key (sno) references student(sno) 一定要带上constraint

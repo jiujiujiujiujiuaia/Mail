@@ -1,0 +1,20 @@
+.background{
+    width: 100%;
+    background-color: ghostwhite;
+    margin-top: 3%;
+}
+.box{
+    width: 85%;
+    height: 90%;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.box::-webkit-scrollbar{
+    width: 1px;
+    height: 1px;
+}
+.group{
+    margin-left: auto;
+    margin-right: auto;
+}
