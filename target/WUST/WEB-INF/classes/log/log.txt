@@ -12,3 +12,25 @@ localhost:8080 + Login 转入到logout(某个控制器)那就是 localhost:8080/
 但是还是留下了一个问题 为什么刚设置完cookie的maxage 然后再去index 控制台输出的是该cookie的maxage为 -1 还是一个临时的
 
 2得深入的弄清楚发生了什么 spring已经帮我注入了situation这个类 但是如果我自己再加一个构造函数就会报错
+
+20180511
+啊 创建CONSTRAINT foreign key (sno) references student(sno) 一定要带上constraint
+20180514
+今天出现了一个问题 当我的电脑没有联网成功的时候 是导致无法从数据库取数据还是无法获取cdn的资源 导致页面瘫痪 点击登陆都没有悬浮窗跳出来
+并且网址跳转到了/Login/#
+20180519
+有一种业务情况 比如说你的网址由 index/login -> 点击logout -> 经过了控制器logout -> 你的网址来到了 index/logout
+但是其实你显示的是 主界面的页面 网址栏确实index/logout
+解决办法：
+将logout里面的return ""改为 return "redirect:/index/home" ->也就是相应的控制器 这样地址栏就改变了
+
+20180523
+今天又出了一个奇怪的Bug:
+org.apache.ibatis.binding.BindingException: Parameter 'c_id' not found. Available parameters are [arg1, arg0, count, param3, param1, param2]
+简单来说就是在sql执行找不到某参数
+eg:
+    @Select("select * from situation where  p_id=#{p_id}")
+    public Situation getSituationById(int p_id);
+    只有你这样改了才知道
+     @Select("select * from situation where  p_id=#{p_id}")
+        public Situation getSituationById(@Param("p_id")int p_id);才不报错 真奇怪

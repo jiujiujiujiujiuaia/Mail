@@ -1,10 +1,7 @@
 package service;
 
 import edu.princeton.cs.algs4.StdOut;
-import entity.Customer;
-import entity.Product;
-import entity.Situation;
-import entity.User;
+import entity.*;
 import mapper.IUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,20 +24,41 @@ public class UserService {
         this.iUserMapper = iUserMapper;
     }
 
-    public boolean login(Customer customer) {
+    public Situation getSituationById(int c_id,int p_id){
+        return iUserMapper.getSituationById(c_id,p_id);
+    }
+
+    public Customer login(Customer customer) {
 
         Customer u = iUserMapper.findUser(customer);
+        StdOut.println(u.getC_address());
         if (u != null)
-            return true;
+            return u;
         else {
-            return false;
+            return null;
         }
+    }
+    public int updateCustomerAddress(int id,String address)
+    {
+        return iUserMapper.updateCustomerAddress(id,address);
     }
     public List<Situation> showcart(int c_id){
         return iUserMapper.getsituation(c_id);
     }
     public int addcart(Situation situation){
         return iUserMapper.addtocart(situation);
+    }
+    public int updateSitution(int c_id,int p_id,int count){
+        return iUserMapper.updateSitution(c_id,p_id,count);
+    }
+
+    public Admin getAdmin(Admin admin)
+    {
+
+        return iUserMapper.getAdmin(admin);
+    }
+    public Admin getAdminByName(String username){
+        return iUserMapper.getAdminByName(username);
     }
     public Customer getCoustomerByc_name(String c_name){
         return iUserMapper.findCustomerByName(c_name);
@@ -66,8 +84,19 @@ public class UserService {
             return true;
         }
     }
+    public Customer getCustomerById(int c_id)
+    {
+        return iUserMapper.getCustomerById(c_id);
+    }
+    public Product findProductById(int id){
+        return iUserMapper.findProductById(id);
+    }
     public ArrayList<Product> getAllProduct(){
         return iUserMapper.getAllProduct();
+    }
+    public int addProduct(Product product){
+        int i = iUserMapper.addProduct(product);
+        return i;
     }
 
 //    @Transactional

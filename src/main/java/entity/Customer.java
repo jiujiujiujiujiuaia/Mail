@@ -19,6 +19,16 @@ public class Customer {
 
     private int c_id;
 
+    private String c_address;
+
+    public void setC_address(String c_address) {
+        this.c_address = c_address;
+    }
+
+    public String getC_address() {
+        return c_address;
+    }
+
     public int getC_id() {
         return c_id;
     }
